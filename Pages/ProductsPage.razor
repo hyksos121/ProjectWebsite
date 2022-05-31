@@ -1,0 +1,245 @@
+﻿@page "/ProductsPage"
+@using ProjectWebsite
+@using ProjectWebsite.Data
+@using System.Security.Claims
+
+
+@inherits OwningComponentBase<DBService>
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IHttpContextAccessor HttpContextAccessor
+@inject Blazored.Localisation.Services.IBrowserDateTimeProvider browserDateTimeProvider
+
+
+
+<h1>Products</h1>
+<AuthorizeView>
+    <Authorized>
+        <p>
+            <button class="btn btn-success"
+                    @onclick="AddNewProduct">
+                    Add New Product
+            </button>
+        </p>
+        @if (ShowSellPopup)
+            {
+                <!-- This is the popup to create or edit a product -->
+                <div class="modal" tabindex="-1" style="display:block" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title">Add Product</h3>
+                                <!-- Button to close the popup -->
+                                <button type="button" class="close"
+                                @onclick="ClosePopup">
+                                    <span aria-hidden="true">X</span>
+                                </button>
+                            </div>
+                            <!-- Edit form for the current Service -->
+                            <div class="modal-body">
+                                <input class="form-control" type="text"
+                                placeholder="Enter Name"
+                               @bind="objProduct.ProductName" />
+
+                                <input class="form-control" type="text"
+                               placeholder="Enter Description"
+                               @bind="objProduct.Description" />
+
+                                <input class="form-control" type="text"
+                               placeholder="Enter Price"
+                               @bind="objProduct.Price" />
+                                <br />
+                                <!-- Button to save the Service -->
+                                <button class="btn btn-success"
+                                @onclick="SaveProduct">
+                                    Save
+                                </button>&nbsp;
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        @if (ShowBuyPopup)
+            {
+                <!-- This is the popup to create or edit a product -->
+                <div class="modal" tabindex="-1" style="display:block" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title">Buy Product</h3>
+                                <!-- Button to close the popup -->
+                                <button type="button" class="close"
+                                @onclick="ClosePopup">
+                                    <span aria-hidden="true">X</span>
+                                </button>
+                            </div>
+                            <!-- Show Description -->
+                            <div class="modal-body">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Seller Name</th>
+                                            <th>Product Name</th>
+                                            <th>Product Description</th>
+                                            <th>Product Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>@sellerName</td>
+                                            <td>@objProduct.ProductName</td>
+                                            <td>@objProduct.Description</td>
+                                            <td>@objProduct.Price</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br />
+                                <!-- Button to Buy Product -->
+                                <button class="btn btn-success"
+                                    @onclick="CompleteTransaction">
+                                    Buy
+                                </button>&nbsp;
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            }
+    </Authorized>
+</AuthorizeView>
+
+
+<input @bind-value="SearchTerm" @bind-value:event="oninput" /> @*Search Bar*@
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Product Price</th>
+            <AuthorizeView>
+                <Authorized>
+                    <th>Buy Product</th>
+                </Authorized>
+            </AuthorizeView>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in FilteredProductsList)
+        {
+            <tr>
+                <td>@product.UserId</td>
+                <td>@product.ProductId</td>
+                <td>@product.ProductName</td>
+                <td>@product.Price</td>
+                
+                <AuthorizeView>
+                    <Authorized>
+                        <td>
+                            <button
+                                @onclick="@(() => BuyProduct(product))">
+                                Buy Product
+                            </button>
+                        </td>
+                    </Authorized>
+                </AuthorizeView>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+ @code 
+{
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationStateTask { get; set; }
+
+    string SearchTerm { get; set; } = "";
+
+    Users CurrUser = new Users();
+    Products objProduct = new Products();
+    List<Users> userList = new List<Users>();
+    List<Products> ProductsList = new List<Products>();
+    List<Products> FilteredProductsList => ProductsList.Where(p => p.ProductName.ToLower().Contains(SearchTerm.ToLower()) && p.IsBought == false).ToList();
+
+    string? userId;
+    string? sellerName;
+    DateTime currentLocalTime;
+
+    bool ShowSellPopup = false;
+    bool ShowBuyPopup = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        ProductsList = await @Service.GetProductsAsync();
+
+        var authentication = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = (authentication).User;
+        if (user.Identity.IsAuthenticated)
+        {
+            userId = user.FindFirst(c => c.Type.Contains("nameidentifier"))?.Value;
+            CurrUser = (await @Service.GetUserAsync(userId))[0];
+            userList = await @Service.GetAllUserAsync();
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender) // Remove the firstRender check if you want the current local time displayed to continuously update.
+        {   // Leave the above firstRender check in place to ensure that the call to StateHasChanged() does not trigger an endless update loop.
+            var browserDateTime = await browserDateTimeProvider.GetInstance();
+            currentLocalTime = browserDateTime.Now;
+            StateHasChanged();
+        }
+    }
+
+    void ClosePopup()
+    {
+        ShowSellPopup = false;
+        ShowBuyPopup = false;
+    }
+
+    async void BuyProduct(Products product)
+    {
+        objProduct = product;
+        sellerName = await @Service.GetUserNameAsync(objProduct.UserId);
+        ShowBuyPopup = true;
+    }
+
+    void AddNewProduct()
+    {
+        objProduct = new Products();
+        objProduct.UserId = CurrUser.UserId;
+        objProduct.ProductId = ProductsList.Max(p => p.ProductId) + 1; 
+        ShowSellPopup = true;
+    }
+
+    async Task SaveProduct()
+    {
+        ShowSellPopup = false;
+
+        Products objNewProduct = new Products();
+        objNewProduct.ProductName = objProduct.ProductName;
+        objNewProduct.ProductId = objProduct.ProductId;
+        objNewProduct.UserId = objProduct.UserId;
+        objNewProduct.Price = objProduct.Price;
+        objNewProduct.Description = objProduct.Description;
+
+        // Save the result
+        var result = @Service.CreateProductAsync(objNewProduct);
+        ProductsList = await @Service.GetProductsAsync();
+    }
+
+    async Task CompleteTransaction()
+    {
+        ShowBuyPopup = false;
+
+        var CommitedProductTransaction = await @Service.CommitProductTransaction(CurrUser.UserId, objProduct, currentLocalTime);
+        bool DeletedProduct = await @Service.DeleteProductAsync(objProduct);
+        ProductsList = await @Service.GetProductsAsync();
+
+
+    }
+}

@@ -1,0 +1,117 @@
+﻿@page "/UserInfo"
+@using ProjectWebsite
+@using ProjectWebsite.Data
+@using System.Security.Claims
+@using System.Text
+
+
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inherits OwningComponentBase<DBService>
+@inject IHttpContextAccessor HttpContextAccessor
+
+<h1>UserInfo</h1>
+<AuthorizeView>
+    <Authorized>
+        <h1>Hello, @CurrUser.PublicUserName</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+
+
+                        <th>AspId</th>
+                        <th>User Id</th>
+                        <th>Public Username</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@CurrUser.AspId</td>
+                        <td>@CurrUser.UserId</td>
+                        <td>@CurrUser.PublicUserName</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product Transactions Date</th>
+                        <th>Product Transactions Seller</th>
+                        <th>Product Id</th>
+                        <th>Product Transactions Id</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var trans in PTransList)
+                    {
+                        <tr>
+                            <td>@trans.TransactionDate</td>
+                            <td>@trans.SellerId</td>
+                            <td>@trans.ProductId</td>
+                            <td>@trans.TransactionId</td>
+                        </tr>    
+                    }
+                </tbody>
+            </table>
+
+            <br />
+            <br />
+            <table class="table">
+                <thead>
+                    <trow>
+                        <th>Service Transactions Date</th>
+                        <th>Service Transactions Seller</th>
+                        <th>Service Id</th>
+                        <th>Service Transactions Id</th>
+                    </trow>
+                </thead>
+                <tbody>
+                    @foreach(var trans in STransList)
+                    {
+                        <tr>
+                            <td>@trans.TransactionDate</td>
+                            <td>@trans.SellerId</td>
+                            <td>@trans.ServiceId</td>
+                            <td>@trans.TransactionId</td>
+                        </tr>    
+                    }
+                </tbody>
+            </table>
+    </Authorized>
+
+    <NotAuthorized>
+        <p>You're not signed in.</p>
+    </NotAuthorized>
+</AuthorizeView>
+
+
+
+@code 
+{
+    // AuthenticationState is available as a CascadingParameter
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationStateTask { get; set; }
+
+    Users CurrUser = new Users();
+    List<ProductTransactions> PTransList = new List<ProductTransactions>();
+    List<ServiceTransactions> STransList = new List<ServiceTransactions>();
+
+    string? userId;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authentication = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = (authentication).User;
+        if (user.Identity.IsAuthenticated)
+        {
+            userId = user.FindFirst(c => c.Type.Contains("nameidentifier"))?.Value;
+
+            CurrUser = (await @Service.GetUserAsync(userId))[0];
+
+            PTransList = await @Service.GetProductTransactionsAsync(CurrUser.UserId);
+            STransList = await @Service.GetServiceTransactionsAsync(CurrUser.UserId);
+        }
+    }
+
+    
+}

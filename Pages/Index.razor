@@ -1,0 +1,103 @@
+﻿@page "/"
+@using ProjectWebsite
+@using ProjectWebsite.Data
+@using System.Security.Claims
+
+
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inherits OwningComponentBase<DBService>
+@inject IHttpContextAccessor HttpContextAccessor
+
+<PageTitle>Index</PageTitle>
+
+<h1>Welcome to Project Website</h1>
+
+
+<AuthorizeView>
+    <Authorized>
+        <h2>Hello!, @CurrUser.PublicUserName</h2>
+    </Authorized>
+    <NotAuthorized>
+        <h2>Hello!</h2>
+    </NotAuthorized>
+</AuthorizeView>
+
+<br />
+<br />
+<h3>Suggested Products And Service</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Seller</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(int i = 0; i < 5 && i < PLen; i++)
+        {
+            string? userName = UsersList.Find(e => e.UserId == ProductsList[i].UserId).PublicUserName;
+            <tr>
+                <td>@ProductsList[i].ProductName</td>
+                <td>@userName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>Services</th>
+            <th>Provider</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(int i = 0; i < 5 && i < SLen; i++)
+        {
+            string? userName = UsersList.Find(e => e.UserId == ServicesList[i].UserId).PublicUserName;
+            <tr>
+                <td>@ServicesList[i].ServiceName</td>
+                <td>@userName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@code
+{
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationStateTask { get; set; }
+
+    Users CurrUser = new Users();
+
+    List<Users> UsersList = new List<Users>();
+    List<Products> ProductsList = new List<Products>();
+    List<Services> ServicesList = new List<Services>();
+
+
+    int? PLen;
+    int? SLen;
+
+    string? userId;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authentication = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = (authentication).User;
+        userId = user.FindFirst(c => c.Type.Contains("nameidentifier"))?.Value;
+
+        // Get the current user
+        if (authenticationStateTask != null && user.Identity.IsAuthenticated) 
+        {
+            CurrUser = (await @Service.GetUserAsync(userId))[0];
+        }
+
+        UsersList = await @Service.GetAllUserAsync();
+        ProductsList = await @Service.GetProductsAsync();
+        ServicesList = await @Service.GetServicesAsync();
+
+        PLen = ProductsList.Count;
+        SLen = ServicesList.Count;
+    }
+}

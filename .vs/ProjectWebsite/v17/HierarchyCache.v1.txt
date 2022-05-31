@@ -1,0 +1,203 @@
+﻿++Solution 'ProjectWebsite' ‎(1 of 1 project)
+i:{00000000-0000-0000-0000-000000000000}:ProjectWebsite.sln
+++ProjectWebsite
+i:{00000000-0000-0000-0000-000000000000}:ProjectWebsite
+++Connected Services 
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:>385
+++SQL Server Express LocalDB (Local) (ConnectionStrings:DefaultConnection)
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:>409
+++Dependencies
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:>384
+++Analyzers
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:analyzers
+++Microsoft.AspNetCore.Analyzers
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\program files\dotnet\sdk\6.0.203\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.analyzers.dll
+++Microsoft.AspNetCore.App.Analyzers
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.5\analyzers\dotnet\cs\microsoft.aspnetcore.app.analyzers.dll
+++Microsoft.AspNetCore.App.CodeFixes
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.5\analyzers\dotnet\cs\microsoft.aspnetcore.app.codefixes.dll
+++Microsoft.AspNetCore.Components.Analyzers
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\program files\dotnet\sdk\6.0.203\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.components.analyzers.dll
+++Microsoft.AspNetCore.Mvc.Analyzers
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\program files\dotnet\sdk\6.0.203\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.mvc.analyzers.dll
+++Microsoft.AspNetCore.Razor.SourceGenerator.Tooling.Internal
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\program files\dotnet\sdk\6.0.203\sdks\microsoft.net.sdk.razor\source-generators\microsoft.aspnetcore.razor.sourcegenerator.tooling.internal.dll
+++Microsoft.CodeAnalysis.CSharp.NetAnalyzers
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\program files\dotnet\sdk\6.0.203\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+++Microsoft.CodeAnalysis.NetAnalyzers
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\program files\dotnet\sdk\6.0.203\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+++Microsoft.EntityFrameworkCore.Analyzers
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\.nuget\packages\microsoft.entityframeworkcore.analyzers\6.0.5\analyzers\dotnet\cs\microsoft.entityframeworkcore.analyzers.dll
+++Microsoft.Extensions.Logging.Generators
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.5\analyzers\dotnet\roslyn4.0\cs\microsoft.extensions.logging.generators.dll
+++Microsoft.NET.Sdk.Razor.SourceGenerators
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\program files\dotnet\sdk\6.0.203\sdks\microsoft.net.sdk.razor\source-generators\microsoft.net.sdk.razor.sourcegenerators.dll
+++System.Text.Json.SourceGeneration
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.5\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+++Frameworks
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:frameworks
+++Microsoft.AspNetCore.App
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\microsoft.aspnetcore.app
+++Microsoft.NETCore.App
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\microsoft.netcore.app
+++Packages
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:packages
+++Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore (6.0.5)
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:>405
+++Microsoft.AspNetCore.Identity.EntityFrameworkCore (6.0.5)
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:>406
+++Microsoft.AspNetCore.Identity.UI (6.0.5)
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:>408
+++Microsoft.EntityFrameworkCore.SqlServer (6.0.5)
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:>404
+++Microsoft.EntityFrameworkCore.Tools (6.0.5)
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:>407
+++Properties
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\properties\
+++launchSettings.json
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\properties\launchsettings.json
+++serviceDependencies.json
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\properties\servicedependencies.json
+++serviceDependencies.local.json
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\properties\servicedependencies.local.json
+++wwwroot
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\wwwroot\
+++css
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\wwwroot\css\
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\wwwroot\css\open-iconic\font\css\
+++bootstrap
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\wwwroot\css\bootstrap\
+++bootstrap.min.css
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\wwwroot\css\bootstrap\bootstrap.min.css
+++bootstrap.min.css.map
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\wwwroot\css\bootstrap\bootstrap.min.css.map
+++open-iconic
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\wwwroot\css\open-iconic\
+++font
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\wwwroot\css\open-iconic\font\
+++open-iconic-bootstrap.min.css
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\wwwroot\css\open-iconic\font\css\open-iconic-bootstrap.min.css
+++fonts
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\wwwroot\css\open-iconic\font\fonts\
+++open-iconic.eot
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\wwwroot\css\open-iconic\font\fonts\open-iconic.eot
+++open-iconic.otf
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\wwwroot\css\open-iconic\font\fonts\open-iconic.otf
+++open-iconic.svg
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\wwwroot\css\open-iconic\font\fonts\open-iconic.svg
+++open-iconic.ttf
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\wwwroot\css\open-iconic\font\fonts\open-iconic.ttf
+++open-iconic.woff
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\wwwroot\css\open-iconic\font\fonts\open-iconic.woff
+++FONT-LICENSE
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\wwwroot\css\open-iconic\font-license
+++ICON-LICENSE
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\wwwroot\css\open-iconic\icon-license
+++README.md
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\wwwroot\css\open-iconic\readme.md
+++site.css
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\wwwroot\css\site.css
+++favicon.ico
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\wwwroot\favicon.ico
+++Areas
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\areas\
+++Identity
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\areas\identity\
+++Pages
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\areas\identity\pages\
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\pages\
+++Account
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\areas\identity\pages\account\
+++LogOut.cshtml
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\areas\identity\pages\account\logout.cshtml
+++Shared
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\areas\identity\pages\shared\
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\shared\
+++_LoginPartial.cshtml
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\areas\identity\pages\shared\_loginpartial.cshtml
+++RevalidatingIdentityAuthenticationStateProvider.cs
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\areas\identity\revalidatingidentityauthenticationstateprovider.cs
+++Data
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\data\
+++Migrations
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\data\migrations\
+++00000000000000_CreateIdentitySchema.cs
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\data\migrations\00000000000000_createidentityschema.cs
+++00000000000000_CreateIdentitySchema.Designer.cs
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\data\migrations\00000000000000_createidentityschema.designer.cs
+++ApplicationDbContextModelSnapshot.cs
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\data\migrations\applicationdbcontextmodelsnapshot.cs
+++ApplicationDbContext.cs
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\data\applicationdbcontext.cs
+++WeatherForecast.cs
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\data\weatherforecast.cs
+++WeatherForecastService.cs
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\data\weatherforecastservice.cs
+++_Host.cshtml
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\pages\_host.cshtml
+++_Layout.cshtml
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\pages\_layout.cshtml
+++Error.cshtml
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\pages\error.cshtml
+++Error.cshtml.cs
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\pages\error.cshtml.cs
+++FetchData.razor
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\pages\fetchdata.razor
+++Index.razor
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\pages\index.razor
+++Products.razor
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\pages\products.razor
+++Services.razor
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\pages\services.razor
+++UserInfo.razor
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\pages\userinfo.razor
+++LoginDisplay.razor
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\shared\logindisplay.razor
+++MainLayout.razor
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\shared\mainlayout.razor
+++MainLayout.razor.css
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\shared\mainlayout.razor.css
+++NavMenu.razor
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\shared\navmenu.razor
+++NavMenu.razor.css
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\shared\navmenu.razor.css
+++SurveyPrompt.razor
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\shared\surveyprompt.razor
+++_Imports.razor
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\_imports.razor
+++App.razor
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\app.razor
+++appsettings.json
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\appsettings.json
+++appsettings.Development.json
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\appsettings.development.json
+++efpt.config.json
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\efpt.config.json
+++ProductRating.cs
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\productrating.cs
+++Products.cs
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\products.cs
+++ProductTransactions.cs
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\producttransactions.cs
+++Program.cs
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\program.cs
+++ServiceRating.cs
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\servicerating.cs
+++Services.cs
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\services.cs
+++ServiceTransactions.cs
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\servicetransactions.cs
+++testWebsiteDBContext.cs
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\testwebsitedbcontext.cs
+++Users.cs
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\users.cs
+++UsersService.cs
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:c:\users\yousu\onedrive\github_repos\mywebsite\projectwebsite\usersservice.cs
+++Secrets.json (Local)
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:>436
+++Secrets.json (Local) dependency is detected
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:>437
+++SignalR
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:>434
+++Your application is making use of SignalR. For environments that need to scale we strongly recommend adding a dependency on Azure SignalR Service.
+i:{1734f2a1-a362-43bf-ac4b-5280cd1d3471}:>435

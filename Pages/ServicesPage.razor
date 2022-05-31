@@ -1,0 +1,246 @@
+﻿@page "/ServicesPage"
+@using ProjectWebsite
+@using ProjectWebsite.Data
+@using System.Security.Claims
+
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inherits OwningComponentBase<DBService>
+@inject IHttpContextAccessor HttpContextAccessor
+@inject Blazored.Localisation.Services.IBrowserDateTimeProvider browserDateTimeProvider
+
+
+<h1>Services</h1>
+<AuthorizeView>
+    <Authorized>
+        <p>
+            <button class="btn btn-success"
+                    @onclick="AddNewService">
+                    Add New Service
+            </button>
+        </p>
+        @if (ShowSellPopup)
+        {
+            <!-- This is the popup to create or edit a product -->
+            <div class="modal" tabindex="-1" style="display:block" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Add Service</h3>
+                            <!-- Button to close the popup -->
+                        <button type="button" class="close"
+                                @onclick="ClosePopup">
+                                <span aria-hidden="true">X</span>
+                            </button>
+                        </div>
+                        <!-- Edit form for the current Service -->
+                    <div class="modal-body">
+                            <input class="form-control" type="text"
+                               placeholder="Enter Name"
+                               @bind="objService.ServiceName" />
+
+                            <input class="form-control" type="text"
+                               placeholder="Enter Description"
+                               @bind="objService.Description" />
+
+                            <input class="form-control" type="text"
+                               placeholder="Enter Price"
+                               @bind="objService.Rate" />
+                            <br />
+                            <!-- Button to save the Service -->
+                        <button class="btn btn-success"
+                                @onclick="SaveService">
+                                Save
+                            </button>&nbsp;
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (ShowBuyPopup)
+        {
+                <!-- This is the popup to create or edit a product -->
+                <div class="modal" tabindex="-1" style="display:block" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title">Buy Service</h3>
+                                <!-- Button to close the popup -->
+                                <button type="button" class="close"
+                                @onclick="ClosePopup">
+                                    <span aria-hidden="true">X</span>
+                                </button>
+                            </div>
+                            <!-- Show Description -->
+                            <div class="modal-body">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Seller Name</th>
+                                            <th>Service Name</th>
+                                            <th>Service Description</th>
+                                            <th>Service Rate</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>@sellerName</td>
+                                            <td>@objService.ServiceName</td>
+                                            <td>@objService.Description</td>
+                                            <td>@objService.Rate</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br />
+                                <!-- Button to Buy Product -->
+                                <button class="btn btn-success"
+                                    @onclick="CompleteTransaction">
+                                    Buy
+                                </button>&nbsp;
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            }
+    </Authorized>
+</AuthorizeView>
+
+
+<input @bind-value="SearchTerm" @bind-value:event="oninput" /> @*Search Bar*@
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Service ID</th>
+            <th>Service Name</th>
+            <th>Service Description</th>
+            <th>Service Price</th>
+            <AuthorizeView>
+                <Authorized>
+                    <th>Buy Product</th>
+                </Authorized>
+            </AuthorizeView>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var service in FilteredServicesList)
+        {
+            <tr>
+                <td>@service.UserId</td>
+                <td>@service.ServiceId</td>
+                <td>@service.ServiceName</td>
+                <td>@service.Description</td>
+                <td>@service.Rate</td>
+                <AuthorizeView>
+                    <Authorized>
+                        <td>
+                            <button
+                                @onclick="@(() => BuyService(service))">
+                                Buy Service
+                            </button>
+                        </td>
+                    </Authorized>
+                </AuthorizeView>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+@code 
+{
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationStateTask { get; set; }
+
+    string SearchTerm { get; set; } = "";
+
+    Users CurrUser = new Users();
+    Services objService = new Services();
+    List<Users> userList = new List<Users>();
+    List<Services> ServicesList = new List<Services>();
+    List<Services> FilteredServicesList => ServicesList.Where(s => s.ServiceName.ToLower().Contains(SearchTerm.ToLower()) && s.IsBought == false).ToList();
+
+    string? userId;
+    string? sellerName;
+    DateTime currentLocalTime;
+
+    bool ShowSellPopup = false;
+    bool ShowBuyPopup = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        ServicesList = await @Service.GetServicesAsync();
+
+
+        var authentication = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = (authentication).User;
+        if (user.Identity.IsAuthenticated)
+        {
+            userId = user.FindFirst(c => c.Type.Contains("nameidentifier"))?.Value;
+            CurrUser = (await @Service.GetUserAsync(userId))[0];
+            userList = await @Service.GetAllUserAsync();
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender) // Remove the firstRender check if you want the current local time displayed to continuously update.
+        {   // Leave the above firstRender check in place to ensure that the call to StateHasChanged() does not trigger an endless update loop.
+            var browserDateTime = await browserDateTimeProvider.GetInstance();
+            currentLocalTime = browserDateTime.Now;
+            StateHasChanged();
+        }
+    }
+
+    void ClosePopup()
+    {
+        ShowSellPopup = false;
+        ShowBuyPopup = false;
+    }
+
+    async void BuyService(Services service)
+    {
+        objService = service;
+        sellerName = await @Service.GetUserNameAsync(objService.UserId);
+        ShowBuyPopup = true;
+    }
+
+    void AddNewService()
+    {
+        objService = new Services();
+        objService.UserId = CurrUser.UserId;
+        objService.ServiceId = ServicesList.Max(s => s.ServiceId) + 1; 
+        ShowSellPopup = true;
+    }
+
+    async Task SaveService()
+    {
+        ShowSellPopup = false;
+
+        Services objNewService = new Services();
+        objNewService.ServiceName = objService.ServiceName;
+        objNewService.ServiceId = objService.ServiceId;
+        objNewService.UserId = objService.UserId;
+        objNewService.Rate = objService.Rate;
+        objNewService.Description = objService.Description;
+
+        // Save the result
+        var result = @Service.CreateServiceAsync(objNewService);
+        ServicesList = await @Service.GetServicesAsync();
+    }
+
+    async Task CompleteTransaction()
+    {
+        ShowBuyPopup = false;
+
+        var CommitedServiceTransaction = await @Service.CommitServiceTransaction(CurrUser.UserId, objService, currentLocalTime);
+        bool DeletedService = await @Service.DeleteServiceAsync(objService);
+        ServicesList = await @Service.GetServicesAsync();
+
+
+    }
+}
